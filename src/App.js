@@ -15,13 +15,21 @@ function App() {
   const [discription, setDiscription] = useState('');
 
   useEffect(()=>{
-    const fetchData = ()=>{
+    const fetchDataFromLocal = ()=>{
+      const fetchData= JSON.parse(localStorage.getItem("listItems"));
+      fetchData? setItems(fetchData):setItems([]);
+    }
+    fetchDataFromLocal();
+  },[]);
+
+  useEffect(()=>{ 
+    const fetch= ()=>{
       const result = items.filter((item)=>(
         item.title.toLowerCase().includes(search.toLowerCase())
       ))
       setSearchResult(result.reverse());
     }
-    fetchData();
+    fetch();
   },[items, search]);
 
   const handleCheck=(id)=>{
@@ -29,6 +37,7 @@ function App() {
       item.id === id ? {...item, checked:!item.checked, finishedTime:time}:item
     )
     setItems(newList);
+    localStorage.setItem("listItems",JSON.stringify(newList))
   }
 
   const handleDelete =(id)=>{
@@ -36,6 +45,7 @@ function App() {
       (item.id !== id)
     ))
     setItems(newList);
+    localStorage.setItem("listItems",JSON.stringify(newList));
   }
 
   const handleAddItem =(event)=>{
@@ -50,8 +60,10 @@ function App() {
       finishedTime: null,
 
     }
-    setItems([...items, newItem]);
+    const newList = [...items, newItem];
+    setItems(newList);
     setAddItem('');
+    localStorage.setItem("listItems", JSON.stringify(newList))
   }
 
   const handleDiscription = (e,id)=>{
@@ -60,6 +72,7 @@ function App() {
     item.id === id ? {...item, body:discription}:item
     )
     setItems(newList);
+    localStorage.setItem("listItems", JSON.stringify(newList));
     setDiscription('');
   }
 
