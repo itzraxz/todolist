@@ -1,0 +1,5 @@
+hover:gap-y-[0.5vh]
+hover:shadow-xl
+hover:transform 
+hover:duration-100 
+hover:ease-in-out
