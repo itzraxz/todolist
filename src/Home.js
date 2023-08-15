@@ -5,7 +5,7 @@ const Home = ({handleCheck, items, handleDelete, handleDiscription, setDiscripti
 
   return (
     <main 
-      className=' flex-grow-1 min-h-[56vh] my-[5vh] flex justify-center items-center w-[87vw] mx-auto'
+      className=' flex-grow-1 min-h-[56vh] my-[5vh] flex justify-center items-center w-[87vw] mx-auto mb-[10vh]'
     >
         <List 
           items={items}

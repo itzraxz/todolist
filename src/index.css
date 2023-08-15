@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
+/* font-family: 'Cookie', cursive; */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,6 +11,7 @@ html{
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 body{

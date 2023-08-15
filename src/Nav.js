@@ -4,7 +4,11 @@ import SearchItem from './SearchItem'
 
 const Nav = ({addItem, setAddItem, handleAddItem, search, setSearch}) => {
   return (
-    <nav className='flex flex-col p-[3vh_0] gap-y-[2vh]' >
+    <nav className='flex flex-col p-[3vh_0] gap-y-[2vh]
+      md:flex-row
+      md:place-content-evenly'
+    
+    >
         <AddItem 
           addItem={addItem}
           setAddItem={setAddItem}

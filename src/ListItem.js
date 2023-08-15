@@ -11,19 +11,20 @@ const ListItem = ({
   discription,
 }) => {
   return items.map((item) => (
-    <li
-      className={`grid grid-cols-[0.1fr_1fr_0.1fr] 
+
+    <li  key={item.id}>
+    <form className={`grid grid-cols-[0.1fr_1fr_0.1fr] 
         ${
             item.checked 
             ? "bg-[#9893DA] opacity-75"
             : "bg-[#beb9fd]"
         }
-        justify-evenly
+        justify-around
         items-center  
         gap-x-[1vw] 
         p-[0.5vh_0.5vw]
         hover:p-[1vh_1vw] 
-        rounded-md 
+        rounded-lg 
         max-w-[80vw]
         min-w-max 
         text-[#15152c]
@@ -31,10 +32,20 @@ const ListItem = ({
         hover:transform
         hover:duration-100
         hover:ease
+        hover:my-[1vh]
+        md:p-[1vh_1vw]
+        md:my-[1vh]
+        md:hover:scale-105
+        md:hover:ease-in-out
+        md:hover:transform
+        md:hover:duration-150
+        md:hover:shadow-[#15152c]
+        md:hover:shadow-md
         `
         }
-      key={item.id}
-    >
+        onSubmit={(e) => handleDiscription(e, item.id)}
+    > 
+        
         <div
             className="justify-self-center"
             onClick={(e) => handleCheck(item.id)}
@@ -53,16 +64,17 @@ const ListItem = ({
             max-w-[60vw] 
             break-all
             min-h-max
-            hover:pb-[1vh]
+            hover:pb-[0.5vh]
             gap-y-[1vh]
-            items-center"
+            items-start
+            md:pb-[0.5vh]
+            "
         >
             <label
-                htmlFor="listItem"
                 className={
                 item.checked
-                    ? "line-through"
-                    : "normal"
+                    ? "line-through font-cookie text-[1.3rem] self-center"
+                    : "normal self-center font-cookie text-[1.3rem]"
                 }
                 onDoubleClick={() => handleCheck(item.id)}
             >
@@ -78,27 +90,33 @@ const ListItem = ({
                     hidden
                     group-hover:transform
                     group-hover:duration-100
-                    group-hover:ease-out
+                    group-hover:ease-in-out
                     justify-self-start
-                    py-[0.3vh]
                     border-y
+                    py-[0.5vh]
                     border-[#15152c2a]
+                    md:flex
+                    
                     "
+                    
             >
             
-                <label htmlFor="createdTime">
+                <label
+                >
                     Created:{item.createdTime}
                 </label>
                 
                 {item.checked ? (
-                <label htmlFor="finishedTime" className=" text-slate-800">
+                <label
+                    className="text-slate-800"
+                >
                     Finished:{item.finishedTime}
                 </label>
                 ) : null}
             </div>
         
             {!item.body && !item.checked && (
-                <form
+                <div
                     className="
                     group-hover:flex
                     group-hover:min-w-full 
@@ -108,10 +126,11 @@ const ListItem = ({
                     group-hover:duration-100
                     group-hover:ease-out
                     "
-                    onSubmit={(e) => handleDiscription(e, item.id)}
                     >
                     <input
                         type="text"
+                        id="discription"
+                        name="discription"
                         className="rounded-full
                         min-w-full
                         shadow-xl
@@ -119,12 +138,13 @@ const ListItem = ({
                         border-[#15152c]
                         pl-[1vw]
                         "
+                        title="Add Discription"
                         required
                         placeholder="Add Discription"
                         value={discription}
                         onChange={(e) => setDiscription(e.target.value)}
                     />
-                </form>
+                </div>
             )}
 
             {item.body && (
@@ -132,7 +152,7 @@ const ListItem = ({
                     className=" 
                     group-hover:flex  
                     text-[0.8rem] text-slate-900
-                    group-hover:min-w-max group-hover:min-h-max  
+                    group-hover:min-w-[100%] group-hover:min-h-max  
                     hidden
                     group-hover:transform
                     group-hover:duration-100
@@ -140,6 +160,8 @@ const ListItem = ({
                     break-all
                     justify-self-start
                     max-w-[60vw]
+                    md:flex
+                    md:hover:justify-self-center
                     "
                 >
                 <p
@@ -165,8 +187,10 @@ const ListItem = ({
             active:scale-[1.3]
             active:transform 
             active:duration-100"
+            title="Delete"
             onClick={() => handleDelete(item.id)}
-        />  
+        />
+    </form>  
     </li>
   ));
 };

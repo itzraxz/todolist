@@ -4,7 +4,9 @@ import ListItem from './ListItem'
 const List = ({items, handleCheck, handleDelete, handleDiscription, setDiscription, discription}) => {
 
   return (
-    <ul className=' list-none flex flex-col gap-y-[2vh] justify-center items-center max-w-[80vw]'>
+    <ul className=' list-none flex flex-col gap-y-[1vh] justify-center items-center max-w-[90vw]
+    md:flex-row md:justify-center md:flex-wrap md:gap-[2vh_2vw]
+    '>
       {items.length>=1 && <ListItem 
         items={items}
         handleCheck={handleCheck}
