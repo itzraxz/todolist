@@ -6,7 +6,6 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  max-height: max-content;
 }
 
 body{
@@ -15,6 +14,10 @@ body{
   flex-direction: column;
 }
 
+.addBtn{
+  height: 2rem;
+  width: 1.6rem;
+}
 
 .listStatusBtn{
   @apply min-h-[4vh] min-w-[4vw] outline-none active:text-[blue] focus:text-[blue] active:scale-[1.3] active:transition-all active:duration-100

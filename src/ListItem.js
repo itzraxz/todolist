@@ -8,7 +8,7 @@ const ListItem = ({items, handleCheck, handleDelete, handleDiscription, setDiscr
         items.map((item)=>(
             <li
                 className={`group grid grid-cols-[0.1fr_1fr_0.1fr] ${item.checked?"bg-[#9893DA] opacity-75":"bg-[#beb9fd]"}
-                items-center hover:gap-[1vh_1vw] gap-x-[1vw] p-[1vh_1vw] rounded-[10px] max-w-[87vw] hover:shadow-xl min-w-max text-[#15152c]`}
+                items-center hover:gap-[1vh_1vw] gap-x-[1vw] p-[0.5vh_0.5vw] rounded-[10px] max-w-[87vw] hover:shadow-xl min-w-[40vw] text-[#15152c] hover:transform hover:duration-100 hover:ease-in-out`}
                 key={item.id}
             >
             
@@ -50,7 +50,8 @@ const ListItem = ({items, handleCheck, handleDelete, handleDiscription, setDiscr
                         group-hover:transform
                         group-hover:duration-100
                         group-hover:ease-out
-                        justify-self-center
+                        justify-self-start
+                        pl-[1vw]
                         "
                 >
                     
@@ -76,13 +77,12 @@ const ListItem = ({items, handleCheck, handleDelete, handleDiscription, setDiscr
                         group-hover:flex 
                         group-hover:flex-col 
                         text-[0.8rem] text-slate-900
-                        group-hover:w-max group-hover:h-max  
                         hidden
                         group-hover:transform
                         group-hover:duration-100
                         group-hover:ease-out
                         justify-self-center
-                        py-[1vh]"
+                        pb-[0.5vh]"
 
                         onSubmit={(e)=>handleDiscription(e,item.id)}
                     >   
