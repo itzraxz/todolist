@@ -12,7 +12,10 @@ const ListItem = ({
 }) => {
   return items.map((item) => (
 
-    <li  key={item.id}>
+    <li  
+        key={item.id}
+        className="listItem"
+    >
     <form className={`grid grid-cols-[0.1fr_1fr_0.1fr] 
         ${
             item.checked 
@@ -22,8 +25,8 @@ const ListItem = ({
         justify-around
         items-center  
         gap-x-[1vw] 
-        p-[0.5vh_0.5vw]
-        hover:p-[1vh_1vw] 
+        p-[0.5vh_2vw]
+        hover:p-[1vh_2vw] 
         rounded-lg 
         max-w-[80vw]
         min-w-max 
@@ -33,7 +36,7 @@ const ListItem = ({
         hover:duration-100
         hover:ease
         hover:my-[1vh]
-        md:p-[1vh_1vw]
+        md:p-[1vh_2vw]
         md:my-[1vh]
         md:hover:scale-105
         md:hover:ease-in-out
@@ -74,7 +77,7 @@ const ListItem = ({
                 className={
                 item.checked
                     ? "line-through font-cookie text-[1.3rem] self-center"
-                    : "normal self-center font-cookie text-[1.3rem]"
+                    : "normal self-center font-cookie text-[1.5rem]"
                 }
                 onDoubleClick={() => handleCheck(item.id)}
             >
@@ -91,12 +94,11 @@ const ListItem = ({
                     group-hover:transform
                     group-hover:duration-100
                     group-hover:ease-in-out
-                    justify-self-start
+                    self-center
                     border-y
                     py-[0.5vh]
                     border-[#15152c2a]
                     md:flex
-                    
                     "
                     
             >
@@ -157,11 +159,9 @@ const ListItem = ({
                     group-hover:transform
                     group-hover:duration-100
                     group-hover:ease-out
-                    break-all
-                    justify-self-start
+                    break-keep
                     max-w-[60vw]
                     md:flex
-                    md:hover:justify-self-center
                     "
                 >
                 <p
@@ -179,8 +179,8 @@ const ListItem = ({
         <MdDelete
             tabIndex={0}
             role="deleteItem"
-            className="min-h-[4vh] 
-            min-w-[4vw] 
+            className="min-h-[5vh] 
+            min-w-[5vw] 
             outline-none 
             active:text-[red]
             focus:text-[red]
