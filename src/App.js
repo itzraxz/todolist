@@ -13,13 +13,17 @@ function App() {
   const [search, setSearch] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [discription, setDiscription] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(()=>{
-    const fetchDataFromLocal = ()=>{
-      const fetchData= JSON.parse(localStorage.getItem("listItems"));
-      fetchData? setItems(fetchData):setItems([]);
-    }
-    fetchDataFromLocal();
+    setTimeout(()=>{
+      const fetchDataFromLocal = ()=>{
+        const fetchData= JSON.parse(localStorage.getItem("listItems"));
+        fetchData? setItems(fetchData):setItems([]);
+      }
+      fetchDataFromLocal(); 
+      setIsLoading(true); 
+    },2000)
   },[]);
 
   useEffect(()=>{ 
@@ -95,7 +99,7 @@ function App() {
         handleDiscription={handleDiscription}
         discription={discription}
         setDiscription={setDiscription}
-
+        isLoading={isLoading}
       />
       <Footer />
     </div>
