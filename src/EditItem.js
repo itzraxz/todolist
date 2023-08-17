@@ -28,7 +28,7 @@ const EditItem = ({
         <label
           htmlFor="editTitle"
           name="editTitle"
-          className=" absolute left-[999px]"
+          className=" absolute left-[-9999px]"
         >
           Title:
         </label>

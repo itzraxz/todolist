@@ -22,7 +22,7 @@ const ListItem = ({
         ${
             item.checked 
             ? "bg-[#9893DA] opacity-75"
-            : "bg-[#9893dada]"
+            : "bg-[#afaaf1da]"
         }
         justify-around
         items-center  
