@@ -19,7 +19,8 @@ const Home = ({handleCheck, items, handleDelete, handleDiscription, setDiscripti
         {!isLoading && 
           <p className='animate-bounce text-xl font-medium'>
             Loading...
-          </p>}
+          </p>
+          }
     </main>
   )
 }

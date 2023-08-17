@@ -1,6 +1,8 @@
 import React from "react";
 import { MdPendingActions, MdDelete } from "react-icons/md";
 import { BsClipboard2CheckFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import {AiFillEdit} from'react-icons/ai'
 
 const ListItem = ({
   items,
@@ -8,7 +10,7 @@ const ListItem = ({
   handleDelete,
   handleDiscription,
   setDiscription,
-  discription,
+  discription
 }) => {
   return items.map((item) => (
 
@@ -20,11 +22,11 @@ const ListItem = ({
         ${
             item.checked 
             ? "bg-[#9893DA] opacity-75"
-            : "bg-[#beb9fd]"
+            : "bg-[#9893dada]"
         }
         justify-around
         items-center  
-        gap-x-[1vw] 
+        gap-x-[1.5vw] 
         p-[0.5vh_2vw]
         hover:p-[1vh_2vw] 
         rounded-lg 
@@ -54,9 +56,15 @@ const ListItem = ({
             onClick={(e) => handleCheck(item.id)}
         >
             {!item.checked ? (
-            <MdPendingActions className="listStatusBtn" />
+            <MdPendingActions 
+                className="listStatusBtn"
+                tabIndex={0} 
+            />
             ) : (
-            <BsClipboard2CheckFill className="listStatusBtn" />
+            <BsClipboard2CheckFill
+                className="listStatusBtn" 
+                tabIndex={0}
+            />
             )}
         </div>
 
@@ -175,22 +183,40 @@ const ListItem = ({
             )}
 
         </div>
+        <div className="flex gap-[1vh_0.5vw] md:flex-col justify-center">
+            {!item.checked && <Link to={`edit/${item.id}`}>
+                <AiFillEdit
+                    tabIndex={0}
+                    role="deleteItem"
+                    className="min-h-[5vh] 
+                    min-w-[5vw] 
+                    outline-none 
+                    active:text-[blue]
+                    focus:text-[blue]
+                    active:scale-[1.3]
+                    active:transform 
+                    active:duration-100"
+                    title="Edit"
+                />
+            </Link>}
+            
+            <MdDelete
+                tabIndex={0}
+                role="deleteItem"
+                className="min-h-[5vh] 
+                min-w-[5vw] 
+                outline-none 
+                active:text-[red]
+                focus:text-[red]
+                active:scale-[1.3]
+                active:transform 
+                active:duration-100"
+                title="Delete"
+                onClick={() => handleDelete(item.id)}
+            />
 
-        <MdDelete
-            tabIndex={0}
-            role="deleteItem"
-            className="min-h-[5vh] 
-            min-w-[5vw] 
-            outline-none 
-            active:text-[red]
-            focus:text-[red]
-            active:scale-[1.3]
-            active:transform 
-            active:duration-100"
-            title="Delete"
-            onClick={() => handleDelete(item.id)}
-        />
-    </form>  
+        </div>
+        </form> 
     </li>
   ));
 };

@@ -4,16 +4,20 @@ import Nav from "./Nav";
 import Home from "./Home";
 import {format} from 'date-fns'
 import { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import EditItem from "./EditItem";
 
 function App() {
+  const navigate = useNavigate();
   const time = format(new Date()," YYY,MMM-dd hh:mm:ss aa")
-  const [items, setItems] = useState([]);
-  
+  const [items, setItems] = useState([]);  
   const [addItem, setAddItem] = useState('');
   const [search, setSearch] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [discription, setDiscription] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [editTitle, setEditTitle] = useState('')
+  const [editDiscrip, setEditDiscrip] = useState('')
 
   useEffect(()=>{
     setTimeout(()=>{
@@ -80,27 +84,55 @@ function App() {
     setDiscription('');
   }
 
+  
+  const handleEditUpdate = (id)=>{
+    console.log("Updated: ",id);
+    const newList= items.map((item)=>
+      item.id === id ? {...item, title:editTitle,body:editDiscrip}:item
+    )
+    setItems(newList);
+    localStorage.setItem("listItems", JSON.stringify(newList));
+    navigate('/');
+  }
+
   return (
     <div 
       className=" flex-grow flex flex-col bg-[#f3f3f4] m-0 p-0 box-border max-h-max min-h-screen"
     >
       <Header title={"To-Do-List"} />
       <Nav 
-        addItem={addItem}
-        setAddItem={setAddItem}
-        handleAddItem={handleAddItem}
-        search={search}
-        setSearch={setSearch}
+          addItem={addItem}
+          setAddItem={setAddItem}
+          handleAddItem={handleAddItem}
+          search={search}
+          setSearch={setSearch}
       />
-      <Home 
-        items={searchResult}
-        handleCheck={handleCheck}
-        handleDelete={handleDelete}
-        handleDiscription={handleDiscription}
-        discription={discription}
-        setDiscription={setDiscription}
-        isLoading={isLoading}
-      />
+      <Routes>
+        <Route path="/" element={
+           <Home 
+           items={searchResult}
+           handleCheck={handleCheck}
+           handleDelete={handleDelete}
+           handleDiscription={handleDiscription}
+           discription={discription}
+           setDiscription={setDiscription}
+           isLoading={isLoading}
+         />
+        }
+        />
+        <Route path="edit/:id" element={
+          <EditItem 
+            items={items}
+            setEditTitle={setEditTitle}
+            setEditDiscrip={setEditDiscrip}
+            editDiscrip={editDiscrip}
+            editTitle={editTitle}
+            handleEditUpdate={handleEditUpdate}
+
+          />
+        }
+        />
+      </Routes>
       <Footer />
     </div>
   );
